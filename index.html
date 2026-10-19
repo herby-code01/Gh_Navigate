@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trotro Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="kicker">Ghana · community routes</p>
+    <h1>Trotro Guide</h1>
+    <p class="lede">Say where you are and where you are going. You get the station to head for, the name to look for on the windscreen, and the stop to get off at. Riders keep it accurate by confirming routes and reporting fares.</p>
+  </header>
+
+  <div class="cities" role="group" aria-label="City">
+    <span class="lbl">City</span>
+    <button type="button" class="city" data-city="accra" aria-pressed="true">Accra</button>
+    <button type="button" class="city" data-city="kumasi" aria-pressed="false">Kumasi</button>
+  </div>
+
+  <div class="notice">
+    <p><strong>Starter data.</strong> The starting routes have not been checked on the road, and fares are rough estimates. They improve as riders confirm or correct them.</p>
+    <p id="commNote"></p>
+    <p class="status" id="status" role="status" aria-live="polite"></p>
+  </div>
+
+  <section class="find" aria-label="Plan a trip">
+    <div class="field">
+      <label for="from">I am at</label>
+      <select id="from"></select>
+    </div>
+    <button class="swap" id="swap" type="button" aria-label="Swap start and destination">⇅</button>
+    <div class="field">
+      <label for="to">I am going to</label>
+      <select id="to"></select>
+    </div>
+  </section>
+
+  <section class="result" id="result" aria-live="polite"></section>
+
+  <details class="manage" id="manage">
+    <summary>Routes, fixes and new routes</summary>
+    <div class="mbody">
+      <div id="addWrap">
+        <h3>Add a route</h3>
+        <form class="form" id="addForm" novalidate>
+          <div class="fixbar" id="fixBar" hidden>
+            <span id="fixText"></span>
+            <button type="button" class="btn ghost small" id="fixCancel">Cancel fix</button>
+          </div>
+          <div class="field">
+            <label for="newStops">Stops in order, one per line</label>
+            <textarea id="newStops" placeholder="Circle&#10;Odawna&#10;Kaneshie"></textarea>
+            <p class="hint">List them from one end of the route to the other. Use the same spelling as stops already in the guide so rides can connect.</p>
+          </div>
+          <div class="field">
+            <label for="newFare">Full-route fare in GH₵</label>
+            <input id="newFare" type="number" inputmode="decimal" min="1" step="0.5" placeholder="6">
+          </div>
+          <button class="btn" type="submit">Add route</button>
+          <p class="msg" id="addMsg"></p>
+        </form>
+      </div>
+      <div>
+        <h3 id="listTitle">Routes in this city</h3>
+        <ul class="linelist" id="lineList"></ul>
+      </div>
+      <p class="hint">A route reported wrong by three more riders than confirmed it is hidden from trip planning. A community fix replaces the original once at least two riders confirm it. You can remove only routes you added.</p>
+    </div>
+  </details>
+
+  <p class="foot">Trotro fares change with fuel prices and distance, and mates sometimes name a stop differently. Treat the fare as a guide and confirm it with the mate before you sit down.</p>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
